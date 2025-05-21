@@ -18,13 +18,13 @@ class MaterialCalculationApiView(APIView):
         result = []     # Yakuniy natijani yigamiz
 
         for product_item in product_data:
-            product_code = product_item["product_code"]
+            product_name = product_item["product_name"]
             product_qty = product_item["quantity"]
 
             try:
-                product = Product.objects.get(code=product_code)
+                product = Product.objects.get(name=product_name)
             except Product.DoesNotExist:
-                return Response({'error': f'Product with code {product_code} not found'},
+                return Response({'error': f'Product with code {product_name} not found'},
                                 status=status.HTTP_404_NOT_FOUND)
 
             product_result = {
